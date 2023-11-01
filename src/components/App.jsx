@@ -9,10 +9,10 @@ export class App extends Component {
     bad: 0,
   };
 
-  onUpdate = () => {
+  onUpdate = review => {
     this.setState(prevState => {
       return {
-        good: prevState.good + 1,
+        [review]: prevState[review] + 1,
       };
     });
   };
@@ -20,15 +20,22 @@ export class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     const total = good + neutral + bad;
+    const procentGood = (good / total) * 100;
     return (
       <>
         <h2>Pleader leave feedback</h2>
-        <Button onUpdate={this.onUpdate} text="Good" />
-        <Button text="Neutral" />
-        <Button text="Bad" />
+        <Button onUpdate={() => this.onUpdate('good')} text="Good" />
+        <Button onUpdate={() => this.onUpdate('neutral')} text="Neutral" />
+        <Button onUpdate={() => this.onUpdate('bad')} text="Bad" />
         <h2>Statistics</h2>
         {total > 0 && (
-          <Statistics good={good} neutral={neutral} bad={bad} total={total} />
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            procent={procentGood}
+          />
         )}
       </>
     );
