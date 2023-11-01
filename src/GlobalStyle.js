@@ -12,4 +12,7 @@ export const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
   }
+  h2 {
+    font-size: 54px;
+  }
 `;
