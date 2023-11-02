@@ -8,7 +8,7 @@ const Statistics = ({ good, neutral, bad, total, procent }) => {
       <li>Neutral: {neutral}</li>
       <li>Bad: {bad}</li>
       <li>Total: {total}</li>
-      <li>Positive feedback: {procent.toFixed(2)}%</li>
+      <li>Positive feedback: {Math.ceil(procent)}%</li>
     </List>
   );
 };
