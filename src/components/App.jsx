@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Statistics from './Statistics';
-import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import FeedbackOptions from './FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -32,10 +32,11 @@ export class App extends Component {
     const { good, neutral, bad } = this.state;
     const total = this.getTotal();
     const percentGood = this.getPercent();
+    const options = Object.keys(this.state);
     return (
       <>
         <h2>Pleader leave feedback</h2>
-        <FeedbackOptions variables={this.state} onUpdate={this.onUpdate} />
+        <FeedbackOptions variables={options} onUpdate={this.onUpdate} />
         <h2>Statistics</h2>
         {total > 0 ? (
           <Statistics

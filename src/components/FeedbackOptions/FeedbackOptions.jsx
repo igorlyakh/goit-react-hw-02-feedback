@@ -2,10 +2,9 @@ import Button from 'components/Button';
 import React from 'react';
 
 const FeedbackOptions = ({ variables, onUpdate }) => {
-  const options = Object.keys(variables);
   return (
     <div>
-      {options.map(item => {
+      {variables.map(item => {
         return (
           <Button
             key={item}
