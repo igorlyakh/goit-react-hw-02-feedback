@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from './Button';
 import Statistics from './Statistics';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 
@@ -36,10 +35,7 @@ export class App extends Component {
     return (
       <>
         <h2>Pleader leave feedback</h2>
-        <Button onUpdate={() => this.onUpdate('good')} text="Good" />
-        <Button onUpdate={() => this.onUpdate('neutral')} text="Neutral" />
-        <Button onUpdate={() => this.onUpdate('bad')} text="Bad" />
-        <FeedbackOptions />
+        <FeedbackOptions variables={this.state} onUpdate={this.onUpdate} />
         <h2>Statistics</h2>
         {total > 0 ? (
           <Statistics
