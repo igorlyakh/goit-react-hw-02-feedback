@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Statistics from './Statistics';
 import FeedbackOptions from './FeedbackOptions';
+import Notification from './Notification';
 
 export class App extends Component {
   state = {
@@ -47,7 +48,7 @@ export class App extends Component {
             percent={percentGood}
           />
         ) : (
-          alert('Відгуків немає!')
+          <Notification />
         )}
       </>
     );
