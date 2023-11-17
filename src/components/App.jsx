@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from './Button';
 import Statistics from './Statistics';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 
 export class App extends Component {
   state = {
@@ -17,25 +18,39 @@ export class App extends Component {
     });
   };
 
+  getTotal = () => {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  };
+
+  getPercent = () => {
+    const { good } = this.state;
+    const total = this.getTotal();
+    return (good / total) * 100;
+  };
+
   render() {
     const { good, neutral, bad } = this.state;
-    const total = good + neutral + bad;
-    const procentGood = (good / total) * 100;
+    const total = this.getTotal();
+    const percentGood = this.getPercent();
     return (
       <>
         <h2>Pleader leave feedback</h2>
         <Button onUpdate={() => this.onUpdate('good')} text="Good" />
         <Button onUpdate={() => this.onUpdate('neutral')} text="Neutral" />
         <Button onUpdate={() => this.onUpdate('bad')} text="Bad" />
+        <FeedbackOptions />
         <h2>Statistics</h2>
-        {total > 0 && (
+        {total > 0 ? (
           <Statistics
             good={good}
             neutral={neutral}
             bad={bad}
             total={total}
-            procent={procentGood}
+            percent={percentGood}
           />
+        ) : (
+          alert('Відгуків немає!')
         )}
       </>
     );
